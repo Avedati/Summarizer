@@ -1,5 +1,16 @@
+/*
+  window.onload()
+  
+  This function is called when the webpage loads.
+*/
 window.onload = function() {
 	var articles = ['a', 'an', 'the'];
+	/*
+	  summarize()
+	  
+	  This function will summarize a block of text, by removing articles and
+	  discarding less common (in the block of text) words.
+	*/
 	function summarize() {
 		var text = ' ' + document.getElementById('input').value + ' ';
 		for(var i=0;i<articles.length;i++) {
@@ -32,5 +43,11 @@ window.onload = function() {
 		}
 		document.getElementById('output').innerHTML = words.join(' ').trim();
 	}
+	/*
+	  document.getElementById('go').onclick()
+	  
+	  This function is called when the "Summarize" button is clicked.
+	  It will call the summarize function.
+	*/
 	document.getElementById('go').onclick = function() { summarize(); }
 };
