@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<title>Text Summarizer</title>
+		<link rel='icon' href='favicon.png' type='image/png' />
+		<link rel='stylesheet' href='style.css' type='text/css' />
+		<script src='main.js' type='text/javascript'></script>
+	</head>
+	<body>
+		<section>
+			<textarea id='input' placeholder='Enter text here.'></textarea>
+			<button id='go'>Summarize</button>
+			<div id='compressionRateContainer'>
+				<h1>Summarization Rate</h1>
+				<input type='range' min='0' max='100' value='50' class='slider' id='compressionRate' />
+			</div>
+		</section>
+		<section>
+			<p id='output'>Your output will appear here.</p>
+		</section>
+	</body>
+</html>
