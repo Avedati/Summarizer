@@ -31,17 +31,27 @@ window.onload = function() {
 				prevelance[words[i].toLowerCase()]++;
 			}
 		}
-		// https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript/25500461
-		var items = Object.keys(prevelance).map(function(key) {
-			return [key, prevelance[key]];
+		var sentences = document.getElementById('input').value.split('.').map(function(v) { return v.trim(); });
+		var sentences_map = [];
+		var j = 0;
+		sentences.forEach(function(v) {
+			var words = v.split(' ').map(function(w) { return w.trim(); });
+			var totPrev = 0;
+			for(var i=0;i<words.length;i++) { totPrev += prevelance[words[i]] || 0; }
+			sentences_map.push([v, totPrev, j]);
+			j++;
 		});
-		items.sort(function(a, b) { return b[1] - a[1]; });
+		sentences_map.sort(function(a, b) { return b[1] - a[1]; });
+		
 		var compressionRate = (100 - document.getElementById('compressionRate').value) / 100;
-		var minPrevelance = items[Math.ceil((items.length - 1) * compressionRate)][1];
-		for(var i=0;i<words.length;i++) {
-			if(prevelance[words[i].toLowerCase()] < minPrevelance) { words.splice(i--, 1); }
+		var minPrevelance = sentences_map[Math.ceil((sentences_map.length - 1) * compressionRate)][1];
+		for(var i=0;i<sentences_map.length;i++) {
+			if(sentences_map[i][1] < minPrevelance) {
+				sentences_map.splice(i--, 1);
+			}
 		}
-		document.getElementById('output').innerHTML = words.join(' ').trim();
+		sentences_map.sort(function(a, b) { return b[2] - a[2]; });
+		document.getElementById('output').innerHTML = sentences_map.map(function(v) { return v[0]; }).join(' ').trim();
 	}
 	/*
 	  document.getElementById('go').onclick()
