@@ -44,7 +44,7 @@ window.onload = function() {
 		for(var i=0;i<raw_sentences.length;i++) {
 			for(var j=0;j<raw_sentences[i].length;j++) {
 				for(var k=0;k<raw_sentences[i][j].length;k++) {
-					sentences.push(raw_sentences[i][j][k]);
+					sentences.push(raw_sentences[i][j][k].trim());
 				}
 			}
 		}
