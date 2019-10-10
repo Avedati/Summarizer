@@ -51,7 +51,7 @@ window.onload = function() {
 			}
 		}
 		sentences_map.sort(function(a, b) { return b[2] - a[2]; });
-		document.getElementById('output').innerHTML = sentences_map.map(function(v) { return v[0]; }).join('. ').trim();
+		document.getElementById('output').innerHTML = sentences_map.map(function(v) { return v[0]; }).join('. ').trim() + '.';
 	}
 	/*
 	  document.getElementById('go').onclick()
