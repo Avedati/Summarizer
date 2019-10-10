@@ -31,7 +31,23 @@ window.onload = function() {
 				prevelance[words[i].toLowerCase()]++;
 			}
 		}
-		var sentences = document.getElementById('input').value.split('.').map(function(v) { return v.trim(); });
+		var raw_sentences = document.getElementById('input').value.split('.').map(
+			function(v) {
+				return v.split('?').map(
+					function(w) {
+						return w.split('!');
+					}
+				);
+			}
+		);
+		var sentences = [];
+		for(var i=0;i<raw_sentences.length;i++) {
+			for(var j=0;j<raw_sentences[i].length;j++) {
+				for(var k=0;k<raw_sentences[i][j].length;k++) {
+					sentences.push(raw_sentences[i][j][k]);
+				}
+			}
+		}
 		var sentences_map = [];
 		var j = 0;
 		sentences.forEach(function(v) {
