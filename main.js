@@ -4,7 +4,6 @@
   This function is called when the webpage loads.
 */
 window.onload = function() {
-	var articles = ['a', 'an', 'the'];
 	/*
 	  summarize()
 	  
@@ -13,11 +12,6 @@ window.onload = function() {
 	*/
 	function summarize() {
 		var text = ' ' + document.getElementById('input').value + ' ';
-		for(var i=0;i<articles.length;i++) {
-			while(text.indexOf(' ' + articles[i] + ' ') !== -1) {
-				text = text.replace(' ' + articles[i] + ' ', ' ');
-			}
-		}	
 		var words = text.split(' ').map(function(v) {
 			if(v.charAt(v.length - 1) === '.') { v = v.substring(0, v.length - 1); }
 			return v;
@@ -59,16 +53,33 @@ window.onload = function() {
 		});
 		sentences_map.sort(function(a, b) { return b[1] - a[1]; });
 		
-		var compressionRate = (100 - document.getElementById('compressionRate').value) / 100;
-		var minPrevelance = sentences_map[Math.ceil((sentences_map.length - 1) * compressionRate)][1];
+		// var compressionRate = (100 - document.getElementById('compressionRate').value) / 100;
+		// var minPrevelance = sentences_map[Math.ceil((sentences_map.length - 1) * compressionRate)][1];
+
+		var avgPrev = 0;
+		if(sentences_map.length > 0) {
+			for(var i=0;i<sentences_map.length;i++) {
+				avgPrev += sentences_map[i][1];
+			}
+			avgPrev /= sentences_map.length;
+		}
+
 		for(var i=0;i<sentences_map.length;i++) {
-			if(sentences_map[i][1] < minPrevelance) {
+			if(sentences_map[i][1] < avgPrev) {
 				sentences_map.splice(i--, 1);
 			}
 		}
-		sentences_map.sort(function(a, b) { return b[2] - a[2]; });
-		document.getElementById('output').innerHTML = sentences_map.map(function(v) { return v[0]; }).join('. ').trim() + '.';
+		sentences_map.sort(function(a, b) { return a[2] - b[2]; });
+		var result = sentences_map.map(function(v) { return v[0]; }).join('. ').trim() + '.';
+		result = result.replace(' are ', ' ');
+		result = result.replace(' is ', ' ');
+		result = result.replace(' a ', ' ');
+		result = result.replace(' an ', ' ');
+		result = result.replace(' the ', ' ');
+		result = result.replace('  ', ' ');
+		document.getElementById('output').innerHTML = result;
 	}
+
 	/*
 	  document.getElementById('go').onclick()
 	  
