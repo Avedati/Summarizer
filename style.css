@@ -1,73 +1,158 @@
-@import url('https://fonts.googleapis.com/css?family=Be+Vietnam');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Major+Mono+Display');
 
-html, body {
+* {
 	margin:0;
+	border:0;
 	padding:0;
-	width:100%;
-	height:100%;
+	outline:0;
 	overflow:hidden;
 }
 
-section {
-	float:left;
-	width:50%;
+html, body {
+	width:100%;
 	height:100%;
 }
 
-textarea#input {
+h1 {
 	float:left;
-	margin:10px;
-	padding:10px;
-	width:calc(100% - 40px);
-	height:calc(90% - 40px);
-	border-radius:10px;
-	background:#ececec;
-	color:#00b894;
-	font-family:'Be Vietnam';
-	font-size:150%;
-	border:0;
-	outline:0;
-	resize:none;
-	overflow-y:scroll;
+	width:100%;
+	height:10%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:#eeeeee;
+	font-family:'Open Sans';
 }
 
-textarea#input::selection {
-	background:#00b894;
-	color:#ececec;
+article {
+	float:left;
+	width:30%;
+	height:100%;
 }
 
-button#go {
+article button {
 	float:left;
-	margin:10px;
-	width:calc(100% - 20px);
-	height:calc(10% - 20px);
-	border-radius:10px;
-	background:#ececec;
-	color:#00b894;
-	font-family:'Be Vietnam';
-	font-size:150%;
-	border:0;
-	outline:0;
+	margin:7.5vh 7.5vw;
+	width:15vw;
+	height:20vh;
+	background:#9FC490;
+	border-radius:5px;
+	font-family:'Open Sans';
+	font-size:1.5vw;
 	transition:all .5s;
 }
 
-button#go:hover { background:#dbdbdb; }
-
-p#output {
-	float:left;
-	margin:10px;
-	padding:10px;
-	width:calc(100% - 40px);
-	height:calc(100% - 40px);
-	border-radius:10px;
-	background:#ececec;
-	font-family:'Be Vietnam';
-	font-size:150%;
-	overflow-y:scroll;
-	color:#e17055;
+article button:hover {
+	background:#BFE6B2;
 }
 
-p#output::selection {
-	background:#e17055;
-	color:#ececec;
+aside {
+	float:left;
+	width:70%;
+	height:100%;
+}
+
+aside div.screen {
+	position:relative;
+	float:left;
+	margin:7.5vh 5vw;
+	width:60vw;
+	height:75vh;
+	background:#011936;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	border-radius:5px;
+}
+
+aside div.screen>div {
+	position:relative;
+	float:left;
+	width:0px;
+	height:100%;
+}
+
+aside div.screen>div.shown {
+	width:100%;
+}
+
+aside div.screen div textarea {
+	position:absolute;
+	left:2.5%;
+	top:2.5%;
+	padding-right:2.5%;
+	padding-bottom:2.5%;
+	width:95%;
+	height:95%;
+	resize:none;
+	background:inherit;
+	color:white;
+	font-family:'Open Sans';
+	font-size:1.5vw;
+	z-index:2;
+}
+
+aside div.screen div button {
+	position:absolute;
+	left:87.5%;
+	top:87.5%;
+	width:7.5vmin;
+	height:7.5vmin;
+	border-radius:50%;
+	transition:all .5s;
+	font-family:'Major Mono Display';
+	font-size:3vw;
+	z-index:2;
+}
+
+aside div.screen div div#output {
+	position:absolute;
+	left:2.5%;
+	top:2.5%;
+	padding:0;
+	z-index:3;
+	background:#011936;
+	width:0px;
+	height:95%;
+	color:white;
+	transition:width .5s;
+}
+
+aside div.screen div div#output.shown {
+	width:95%;
+	padding-right:2.5%;
+	padding-bottom:2.5%;
+}
+
+aside div.screen div div#output h1 {
+	width:100%;
+	height:10%;
+	font-family:'Open Sans';
+	font-size:2vw;
+	background:inherit;
+	display:flex;
+	justify-content:left;
+}
+
+aside div.screen div div#output p {
+	width:100%;
+	height:90%;
+	font-family:'Open Sans';
+	font-size:1.5vw;
+}
+
+aside div.screen div div#output button {
+	position:absolute;
+	left:87.5%;
+	top:87.5%;
+	width:7.5vmin;
+	height:7.5vmin;
+	border-radius:50%;
+	transition:all .5s;
+	font-family:'Major Mono Display';
+	font-size:3vw;
+}
+
+aside div.screen button:hover {
+	transform:rotate(30deg);
 }
